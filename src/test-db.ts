@@ -3,10 +3,15 @@ import { User } from "./modules/user/user.model.ts";
 
 await connectDatabase();
 
-const user = await User.findOneAndUpdate(
-    {email: "alice@example.com"},
-    {$addToSet : {hobbies: "music"}},
-    {returnDocument: "after"}
+const result = await User.findOneAndUpdate(
+    {email: 'davidtimestamps@gmail.com'},
+    {$set : {
+        role: 'admin'
+    }},
+    {
+        returnDocument: 'after',
+        runValidators: true
+    }
 )
 
-console.log(user)
+console.log(result)
