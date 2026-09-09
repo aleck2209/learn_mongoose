@@ -3,8 +3,18 @@ import { User } from "./modules/user/user.model.ts";
 
 await connectDatabase();
 
-const user = await User.findOneAndDelete(
-    {email: 'aleckyann@09gmail.com'}
+const user = await User.findOne({
+	email: "alice@example.com",
+});
+
+if (!user) {
+	throw new Error("User not found");
+}
+
+const result = await User.findByIdAndUpdate(
+	user._id,
+	{ $set: { age: 24 } },
+	{ returnDocument: 'after' },
 );
 
-console.log(user);
+console.log(result)
