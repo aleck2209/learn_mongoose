@@ -1,17 +1,16 @@
 import { connectDatabase } from "./config/database.ts";
 import { User } from "./modules/user/user.model.ts";
+import { Post } from "./modules/post/post.model.ts";
 
 await connectDatabase();
 
-const result = await User.findOneAndUpdate(
-    {email: 'davidtimestamps@gmail.com'},
-    {$set : {
-        role: 'admin'
-    }},
-    {
-        returnDocument: 'after',
-        runValidators: true
-    }
-)
+// UTILISATION DE .populate
+// const post = await Post.find().populate('author')
+// const post = await Post.find().populate('author', 'name email age')
+/*
+const post = await Post.find().populate({
+    path: "author",
+    select: "name email"
+})
+*/
 
-console.log(result)
