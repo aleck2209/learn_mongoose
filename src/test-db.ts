@@ -3,18 +3,10 @@ import { User } from "./modules/user/user.model.ts";
 
 await connectDatabase();
 
-const user = await User.findOne({
-	email: "alice@example.com",
-});
+const user = await User.findOneAndUpdate(
+    {email: "alice@example.com"},
+    {$addToSet : {hobbies: "music"}},
+    {returnDocument: "after"}
+)
 
-if (!user) {
-	throw new Error("User not found");
-}
-
-const result = await User.findByIdAndUpdate(
-	user._id,
-	{ $set: { age: 24 } },
-	{ returnDocument: 'after' },
-);
-
-console.log(result)
+console.log(user)
