@@ -34,14 +34,22 @@ const userSchema = new Schema(
 			type: [String],
 			default: [],
 		},
-        isActive: {
-            type: Boolean,
-            default: true,
-        }
+		isActive: {
+			type: Boolean,
+			default: true,
+		},
 	},
 	{
 		timestamps: true,
+		toJSON: { virtuals: true },
+		toObject: { virtuals: true },
 	},
 );
+
+userSchema.virtual("posts", {
+	ref: "Post",
+	localField: "_id",
+	foreignField: "author",
+});
 
 export const User = model("User", userSchema);

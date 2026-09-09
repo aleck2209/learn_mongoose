@@ -12,5 +12,10 @@ const post = await Post.find().populate({
     path: "author",
     select: "name email"
 })
+
+const user = await User.findOne({
+	email: "davidtimestamps@gmail.com",
+}).populate("posts");
 */
 
+// console.log(user);
