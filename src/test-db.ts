@@ -3,10 +3,8 @@ import { User } from "./modules/user/user.model.ts";
 
 await connectDatabase();
 
-const user = await User.findOneAndUpdate(
-    {email: 'aleckyann@09gmail.com'},
-    {age: 26},
-    {new: true}
+const user = await User.findOneAndDelete(
+    {email: 'aleckyann@09gmail.com'}
 );
 
 console.log(user);
