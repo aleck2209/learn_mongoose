@@ -3,4 +3,12 @@ import { User } from "./modules/user/user.model.ts";
 
 await connectDatabase();
 
-console.log(User.modelName);
+const user = new User({
+    name: "Virgile",
+    email: "aleckyann@09gmail.com",
+    age: 25
+});
+
+await user.save();
+
+console.log(user);
