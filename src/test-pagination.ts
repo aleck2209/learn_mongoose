@@ -27,4 +27,4 @@ console.log({
 	total,
 });
 
-mongoose.disconnect();
+await mongoose.disconnect();
