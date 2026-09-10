@@ -1,9 +1,9 @@
 import { User } from "./user.model.ts";
 
-export const seedUsers = async (): Promise<void> => {
+export const seedUsers = async () => {
 	await User.deleteMany({});
 
-	await User.insertMany([
+	const users = await User.insertMany([
 		{
 			name: "Alice",
 			email: "alice@example.com",
@@ -21,5 +21,7 @@ export const seedUsers = async (): Promise<void> => {
 		},
 	]);
 
-    console.log("Users seeded successfully")
+    console.log("Users seeded successfully");
+
+	return users;
 };

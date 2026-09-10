@@ -52,4 +52,13 @@ userSchema.virtual("posts", {
 	foreignField: "author",
 });
 
+userSchema.pre("save", function () {
+	console.log(`Saving user: ${this.email}`);
+});
+
+
+userSchema.post("save", function (doc) {
+  console.log(`User saved: ${doc.email}`);
+});
+
 export const User = model("User", userSchema);
