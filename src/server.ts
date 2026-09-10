@@ -1,15 +1,16 @@
-import express, {type Express, type Request, type Response} from 'express'
-import userRoutes from './modules/user/user.route.ts'
-import { connectDatabase } from './config/database.ts';
+import express, { type Express } from "express";
+import "dotenv"
+import userRoutes from "./modules/user/user.route.ts";
+import { connectDatabase } from "./config/database.ts";
 
 const app: Express = express();
-const PORT: number = 3000;
+const PORT: number = Number(process.env.PORT) || 3000;
 
 app.use(express.json());
-app.use('/users', userRoutes)
+app.use("/users", userRoutes);
 
 await connectDatabase();
 
 app.listen(PORT, () => {
-    console.log(`listening on port ${3000}`)
-})
+	console.log(`listening on port ${PORT}`);
+});
