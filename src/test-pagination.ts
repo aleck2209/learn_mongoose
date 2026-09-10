@@ -9,23 +9,22 @@ const skip = (page - 1) * limit;
 
 connectDatabase();
 
-const user = await User.find()
-	.select("name email age role")
-	.sort({ createdAt: -1 })
-    .skip(skip)
-    .limit(limit)
-    .lean();
+const [user, total] = await Promise.all([
+	User.find()
+		.select("name email age role")
+		.sort({ createdAt: -1 })
+		.skip(skip)
+		.limit(limit)
+		.lean(),
 
-const total = await User.countDocuments()
+	User.countDocuments(),
+]);
 
-const totalPage = Math.ceil(total/limit)
+const totalPage = Math.ceil(total / limit);
 
 console.log({
-    data: user,
-    page,
-    limit,
-    total,
-    totalPage
+	data: user,
+	total,
 });
 
-mongoose.disconnect()
+mongoose.disconnect();
