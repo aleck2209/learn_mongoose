@@ -1,6 +1,6 @@
 import { User } from "./user.model.ts";
 
-export const getUser = async (page: number = 1, limit: number = 10) => {
+export const getUsers = async (page: number = 1, limit: number = 10) => {
 	if (page < 1) {
 		throw new Error("Page must be greater than 0");
 	}

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { connectDatabase } from "./config/database.ts";
 import { User } from "./modules/user/user.model.ts";
 import { Post } from "./modules/post/post.model.ts";
-import { getUser } from "./modules/user/user.service.ts";
+import { getUsers } from "./modules/user/user.service.ts";
 
 await connectDatabase();
 
@@ -21,6 +21,6 @@ const user = await User.findOne({
 }).populate("posts");
 */
 
-const users = await getUser(1, 2);
+const users = await getUsers(1, 2);
 console.log(users);
 await mongoose.disconnect();
